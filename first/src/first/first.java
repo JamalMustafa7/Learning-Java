@@ -1,20 +1,23 @@
 package first;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 public class first {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("jamal");
-		Scanner s=new Scanner(System.in);
-		String name=s.next();
-		s.close();
-		if(s.equals("jamal"))
+	public static void main(String[] args) throws FileNotFoundException {
+		Scanner s=new Scanner(new File("info.txt"));
+		ArrayList<String> names=new ArrayList<String>();
+		while(s.hasNextLine())
 		{
-			System.out.println("Hey Jamal");
+			names.add(s.nextLine());
 		}
-		else {
-			System.out.println("You are not allowed here");
+		for(int i=0;i<names.size();i++)
+		{
+			System.out.println(names.get(i));
 		}
-		}
-
+		s.close();
+		
+	}
 }
+ 
