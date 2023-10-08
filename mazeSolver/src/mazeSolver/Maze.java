@@ -9,13 +9,15 @@ public class Maze {
 	//0=Wall
 	//1=Path
 	//2=Goal
+	static LinkedList<Position>path=new LinkedList<>();
 	public static void main(String[] args) {
-		LinkedList<Position>path=new LinkedList<>();
-		Position p=new Position(0,3);
+		solveMaze(new Position(0,3));
+		
+		
+	}
+	private static boolean solveMaze(Position p) {
+		// TODO Auto-generated method stub
 		path.push(p);
-		
-		
-		
 		while(true)
 		{
 			int x=path.peek().x;
@@ -25,7 +27,7 @@ public class Maze {
 			if(isValid(y+1,x) && maze[y+1][x]==2)
 			{
 				System.out.println("Moved Down.You Win");
-				break;
+				return true;
 			}
 			
 			else if(isValid(y+1,x) && maze[y+1][x]==1)
@@ -39,7 +41,7 @@ public class Maze {
 			if(isValid(y,x-1)&& maze[y][x-1]==2)
 			{
 				System.out.println("Moved Left.You Win");
-				break;
+				return true;
 			}
 			else if(isValid(y,x-1) && maze[y][x-1]==1)
 			{
@@ -52,7 +54,7 @@ public class Maze {
 			if(isValid(y-1,x) && maze[y-1][x]==2)
 			{
 				System.out.println("Moved Up.You Win");
-				break;
+				return true;
 			}
 			else if(isValid(y-1,x) && maze[y-1][x]==1)
 			{
@@ -65,7 +67,7 @@ public class Maze {
 			if(isValid(y,x+1) && maze[y][x+1]==2)
 			{
 				System.out.println("You Win");
-				break;
+				return true;
 			}
 			else if(isValid(y,x+1) && maze[y][x+1]==1)
 			{
@@ -78,10 +80,9 @@ public class Maze {
 			if(path.size()==0)
 			{
 				System.out.println("No Path");
-				break;
+				return false;
 			}
 		}
-		
 	}
 	public static boolean isValid(int y,int x)
 	{
